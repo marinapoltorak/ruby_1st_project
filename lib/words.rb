@@ -26,18 +26,18 @@ class Words
       return "Please enter real words"
     end
 
-    descriptor = (@has_multiple_words || more_words.has_multiple_words) ? "words" : "words"
-
-    if @letters_in_text & more_words.letters_in_text == []
-      return "These #{descriptor} are antigrams."
-    end
+    # descriptor = (@has_multiple_words || more_words.has_multiple_words) ? "words" : "phrases"
+    #
+    # if @letters_in_text & more_words.letters_in_text == []
+    #   return "These are antigrams."
+    # end
 
     @letter_frequencies.each do |letter, frequency|
       if frequency != more_words.letter_frequencies[letter]
-        return "Nope, these #{descriptor} not anagrams."
+        return "These are not anagrams"
       end
     end
 
-    "You got #{descriptor} anagrams."
+    "These are anagrams"
   end
 end
