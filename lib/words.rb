@@ -29,15 +29,15 @@ class Words
     descriptor = (@has_multiple_words || more_words.has_multiple_words) ? "words" : "phrases"
 
     if @letters_in_text & more_words.letters_in_text == []
-      return "These are antigrams"
+      return "These #{descriptor} are antigrams"
     end
 
     @letter_frequencies.each do |letter, frequency|
       if frequency != more_words.letter_frequencies[letter]
-        return "These are not anagrams"
+        return "These #{descriptor} are not anagrams"
       end
     end
 
-    "These are anagrams"
+    "These #{descriptor} are anagrams"
   end
 end
