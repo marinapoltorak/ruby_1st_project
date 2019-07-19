@@ -1,4 +1,4 @@
-class AnagramSolver
+class Words
   attr_reader(:text, :letter_frequencies, :is_valid, :letters_in_text)
 
   def initialize(text)
@@ -18,21 +18,23 @@ class AnagramSolver
     @is_valid = @letters_in_text & ['a', 'e', 'i', 'o', 'u', 'y'] != []
   end
 
-  def is_anagram(otherPhrase)
-    if (!@is_valid) || (!otherPhrase.is_valid)
+  def is_anagram(more_words)
+    if (!@is_valid) || (!more_words.is_valid)
       return "Please enter real words"
     end
 
-    if @letters_in_text & otherPhrase.letters_in_text == []
-      return "These are antigrams."
+    descriptor = (@has_multiple_words || more_words.has_multiple_words) ? "phrases" : "words"
+
+    if @letters_in_text & more_words.letters_in_text == []
+      return "These #{descriptor}are antigrams."
     end
 
     @letter_frequencies.each do |letter, frequency|
-      if frequency != otherPhrase.letter_frequencies[letter]
-        return "Nope, not anagrams."
+      if frequency != more_words.letter_frequencies[letter]
+        return "Nope, these #{descriptor} not anagrams."
       end
     end
 
-    "You got anagrams."
+    "You got #{descriptor} anagrams."
   end
 end
