@@ -27,9 +27,9 @@ describe("Words#is_anagram") do
     expect(words1.is_anagram(words2)).to(eq("Please enter real words"))
   end
 
-  it('Returns "These words are antigrams." when object is "Hello" and argument is "baa"') do
+  it('Returns "These words are antigrams" when object is "Hello" and argument is "baa"') do
     words1 = Words.new("Hello")
     words2 = Words.new("baa")
-    expect(words1.is_anagram(words2)).to(eq("These words are antigrams"))
+    expect(words1.is_anagram(words2)).to(eq("These are antigrams"))
   end
 end

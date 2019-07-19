@@ -1,5 +1,5 @@
 class Words
-  attr_reader(:text, :letter_frequencies, :is_valid, :letters_in_text)
+  attr_reader(:text, :letter_frequencies, :is_valid, :letters_in_text, :has_multiple_words)
 
   def initialize(text)
     @text = text.downcase
@@ -26,11 +26,11 @@ class Words
       return "Please enter real words"
     end
 
-    # descriptor = (@has_multiple_words || more_words.has_multiple_words) ? "words" : "phrases"
-    #
-    # if @letters_in_text & more_words.letters_in_text == []
-    #   return "These are antigrams."
-    # end
+    descriptor = (@has_multiple_words || more_words.has_multiple_words) ? "words" : "phrases"
+
+    if @letters_in_text & more_words.letters_in_text == []
+      return "These are antigrams"
+    end
 
     @letter_frequencies.each do |letter, frequency|
       if frequency != more_words.letter_frequencies[letter]
