@@ -1,6 +1,6 @@
 require 'rspec'
 require 'pry'
-require 'anagram_logic'
+require 'words'
 
 describe("Words#is_anagram") do
   it('Returns "You got anagrams!" when object is "listen" and argument is "silent"') do
@@ -17,7 +17,7 @@ describe("Words#is_anagram") do
 
   it('Returns "You got anagrams!." when object is "Listen" and argument is "Silent"') do
     words1 = Words.new("Listen")
-    phrase2 = Words.new("Silent")
+    words2 = Words.new("Silent")
     expect(words1.is_anagram(words2)).to(eq("You got anagrams!"))
   end
 
@@ -27,9 +27,9 @@ describe("Words#is_anagram") do
     expect(words1.is_anagram(words2)).to(eq("Please enter real words"))
   end
 
-  it('Returns "These are antigrams" when object is "Hello, sweetie" and argument is "bai bai"') do
+  it('Returns "These words are antigrams." when object is "Hello, sweetie" and argument is "baa baa"') do
     words1 = Words.new("Hello, sweetie")
-    words2 = Words.new("bai bai")
-    expect(words1.is_anagram(words2)).to(eq("These are antigrams"))
+    words2 = Words.new("baa baa")
+    expect(words1.is_anagram(words2)).to(eq("These words are antigrams."))
   end
 end

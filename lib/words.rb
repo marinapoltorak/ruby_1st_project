@@ -6,15 +6,18 @@ class Words
     @letter_frequencies = Hash.new { |hash, key| hash[key] = 0 }
     ('a'..'z').each { |letter| @letter_frequencies[letter] }
     @letters_in_text = []
+    @has_multiple_words = false
     @text.split('').each do |letter|
+      if (letter.match?(/[a-z0-9]/))
       @letter_frequencies[letter] += 1
       if !@letters_in_text.include?(letter)
         @letters_in_text.push(letter)
       end
+    elsif letter == ' '
+     @has_multiple_words = true
     end
+  end
     letters_in_text.sort!
-    puts "@letters_in_text: #{@letters_in_text}"
-    puts "vowels in text: #{@letters_in_text & ['a', 'e', 'i', 'o', 'u', 'y']}"
     @is_valid = @letters_in_text & ['a', 'e', 'i', 'o', 'u', 'y'] != []
   end
 
@@ -23,10 +26,10 @@ class Words
       return "Please enter real words"
     end
 
-    descriptor = (@has_multiple_words || more_words.has_multiple_words) ? "phrases" : "words"
+    descriptor = (@has_multiple_words || more_words.has_multiple_words) ? "words" : "words"
 
     if @letters_in_text & more_words.letters_in_text == []
-      return "These #{descriptor}are antigrams."
+      return "These #{descriptor} are antigrams."
     end
 
     @letter_frequencies.each do |letter, frequency|
