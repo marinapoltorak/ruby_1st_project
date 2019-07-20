@@ -36,6 +36,6 @@ describe("Words#is_anagram") do
   it('Returns "These are the letters that match, but not an anagram"') do
     words1 = Words.new("goat")
     words2 = Words.new("boat")
-    expect(words1.anagram(words2)).to(eq("These are the letters that match, but not an anagram"))
+    expect(words1.is_anagram(words2)).to(eq("These are the letters that match, but not an anagram"))
   end
 end
